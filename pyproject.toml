@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "portalengine"
+authors = [{name = "Carl Furtado", email = "carlzfurtado@gmail.com"}]
+readme = "README.md"
+license = {file = "LICENSE"}
+classifiers = [
+	"License :: OSI Approved :: MIT License",
+	# TODO: add more
+]
+version = "0.0.0"
+description = "A 3d game engine for Python using PyGame, OpenGL, and Bullet Physics"
+keywords = [
+	"game",
+	"engine",
+	"3d",
+	"physics",
+	"rendering",
+	"gl",
+	"opengl",
+	"bullet",
+	"pygame"
+]
+
+[project.urls]
+Home = "https://github.com/User0332/portal"
+
+[project.scripts]
