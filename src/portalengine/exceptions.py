@@ -1,0 +1,1 @@
+class GLException(Exception): pass
