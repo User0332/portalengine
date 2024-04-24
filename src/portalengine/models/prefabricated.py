@@ -5,16 +5,16 @@ import glm
 
 from .utils import create_texture
 from ..shaders import load_shader
-from . import Model
+from . import BasicModel
 
 Cube = TypeVar("Cube")
 
 _DATA_CUBE_VERTICES = np.array(
 	[
-		(-1, -1, 1), (1, -1, 1),
-		(1, 1, 1), (-1, 1, 1),
-		(-1, 1, -1), (-1, -1, -1),
-		(1, -1, -1), (1, 1, -1)
+		(-0.5, -0.5, 0.5), (0.5, -0.5, 0.5),
+		(0.5, 0.5, 0.5), (-0.5, 0.5, 0.5),
+		(-0.5, 0.5, -0.5), (-0.5, -0.5, -0.5),
+		(0.5, -0.5, -0.5), (0.5, 0.5, -0.5)
 	]
 )
 
@@ -61,7 +61,7 @@ _DATA_CUBE_VERTEX_DATA = np.hstack([_DATA_CUBE_NORMALS, _DATA_CUBE_VERTEX_DATA])
 
 _DATA_CUBE_VBO_UNBUFFERED = np.hstack([_DATA_CUBE_TEXTURE_DATA, _DATA_CUBE_VERTEX_DATA])
 
-class Cube(Model):
+class Cube(BasicModel):
 	def __init__(self, ctx: gl.Context, texture: gl.Texture, position: glm.vec3, rotation_radians: glm.vec3=glm.vec3(0, 0, 0), scale: glm.vec3=glm.vec3(1.0, 1.0, 1.0), shader_name: str="default") -> None:
 		# TODO: make generic shaders for everything
 		shader_fmt = "2f 3f 3f"

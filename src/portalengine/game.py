@@ -4,13 +4,13 @@ from .exceptions import GLException
 from .events import EventHandlingDelegator
 from .timetracker import TimeTracker
 from .camera import Camera
-from .player import StandardPlayer
+from .player import Player, StandardPlayer
 from .scene import Scene
 from . import shaders
 from . import pygame
 
 class Game:
-	def __init__(self, display_size: tuple[int, int]=(500, 500), title: str="Portal Game", icon_path: str=None, player_type: type[StandardPlayer]=StandardPlayer, gl_version: tuple[int, int]=(3, 3), pygame_flags: int=0) -> None:
+	def __init__(self, display_size: tuple[int, int]=(500, 500), title: str="Portal Game", icon_path: str=None, player_type: type[Player]=StandardPlayer, gl_version: tuple[int, int]=(3, 3), pygame_flags: int=0) -> None:
 		pygame.init()
 
 		pygame.display.gl_set_attribute(pygame.GL_CONTEXT_MAJOR_VERSION, gl_version[0])
@@ -59,8 +59,10 @@ class Game:
 			self.player.update()
 			self.scene.render(self.camera.proj_matrix, self.camera.view_matrix)
 
-			if self.debug and self.ctx.error != "GL_NO_ERROR":
-				raise GLException(self.ctx.error)
+			error = self.ctx.error
+
+			if self.debug and (error != "GL_NO_ERROR"):
+				raise GLException(error)
 
 			pygame.display.flip()
 
